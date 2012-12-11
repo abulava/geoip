@@ -435,7 +435,7 @@ class GeoIP
     city = spl[1]
     @iter_pos += (city.size + 1) unless @iter_pos.nil?
     # set the correct encoding in ruby 1.9 compatible environments:
-    city.force_encoding('iso-8859-1') if city.respond_to?(:force_encoding)
+    city = city.force_encoding('iso-8859-1').encode('utf-8') if city.respond_to?(:force_encoding)
 
     # Get the postal code:
     postal_code = spl[2]
